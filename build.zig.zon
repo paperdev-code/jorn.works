@@ -1,0 +1,13 @@
+.{
+    .name = .jorn_works,
+    .version = "0.0.0-infdev",
+    .dependencies = .{
+        .dots = .{
+            .url = "git+https://github.com/paperdev-code/zig-dots#30ec4daaed3da0181d9ffab6debe1755ffe83595",
+            .hash = "dots-0.0.0-infdev-4tCCl2pgAACgND7sU_LT0-VB5rVPJBE_SC4ZirvvSKQn",
+        },
+    },
+    .minimum_zig_version = "0.17.0-dev.1552+79dc16a0e",
+    .paths = .{"src"},
+    .fingerprint = 0x5e765c93618a2ba4,
+}

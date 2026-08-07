@@ -1,0 +1,109 @@
+@font-face {
+  font-family: "Share Tech Mono";
+  src: url("/fonts/sharetechmono-regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Symbols Nerd Font Mono";
+  src: url("/fonts/symbolsnerdfontmono-regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --text-color: light-dark(rgb(0 0 0), rgb(255 255 255));
+  --back-color: light-dark(rgb(255 255 228), rgb(0 0 0));
+  --dots-mask-start: light-dark(rgb(40 114 104), rgb(34 206 243));
+  --dots-mask-end: light-dark(rgb(40 76 114), rgb(249 32 201));
+  --dots-mask: linear-gradient(135deg, var(--dots-mask-start) 25%, var(--dots-mask-end) 75%);
+  --dots-font: "Share Tech Mono", system-ui;
+  --dots-size: calc(100vh / 63);
+
+  color-scheme: light dark;
+}
+
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow: hidden;
+
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  margin: 0;
+
+  font-family: "Share Tech Mono", Arial, system-ui;
+  color: var(--text-color);
+  background-color: var(--back-color);
+}
+
+main {
+  flex: 1;
+}
+
+header,
+main,
+footer {
+  margin-left: 10vw;
+  z-index: 10;
+}
+
+header {
+  margin-top: calc(var(--dots-size) * 8);
+}
+
+footer {
+  margin-bottom: calc(var(--dots-size) * 8);
+}
+
+pre {
+  font-size: 1em;
+}
+
+#background {
+  position: absolute;
+  overflow: hidden;
+  z-index: 1;
+
+  width: fit-content;
+  height: fit-content;
+
+  background: var(--dots-mask);
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  font-family: var(--dots-font);
+  font-size: var(--dots-size);
+  font-style: normal;
+  font-weight: 400;
+
+  margin: 0;
+}
+
+.icon {
+  font-family: "Symbols Nerd Font Mono";
+}
+
+a {
+  color: var(--text-color);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+a::after {
+  font-family: "Symbols Nerd Font Mono";
+  content: " \f44c";
+  font-size: calc(1em / 2);
+  vertical-align: super;
+}
