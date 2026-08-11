@@ -10,7 +10,7 @@ window.addEventListener('mousemove', function(evt) {
 
 window.addEventListener('load', async function() {
   const elt = document.getElementById('background');
-  background = await initBackground(elt);
+  const background = await initBackground(elt);
   let time_prev_millis = 0;
   function onFrame(time_curr_millis) {
     const time_delta_secs = (time_curr_millis - time_prev_millis) / 1000;
