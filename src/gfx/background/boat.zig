@@ -59,18 +59,12 @@ const Vec3d = struct {
     }
 
     pub fn rotationForFacingPointOnViewport(vec3d: *Vec3d, x: f32, y: f32) Vec3d {
-        const direction: @Vector(3, f32) = .{
-            x - vec3d.x,
-            y - vec3d.y,
-            -vec3d.z,
-        };
+        const direction = @Vector(3, f32){ x, y, 0.0 } - vec3d.asVector();
         const magnitude: f32 = @sqrt(@reduce(.Add, direction * direction));
-        const normalized = direction / @as(
-            @Vector(3, f32),
-            @splat(magnitude + std.math.floatEps(f32)),
-        );
+        const normalized = direction / @as(@Vector(3, f32), @splat(magnitude + std.math.floatEps(f32)));
         const pitch: f32 = std.math.asin(normalized[1]);
         const yaw: f32 = -std.math.asin(normalized[0]);
+        // log.debug("pitch={d}\nyaw={d}\n", .{ pitch, yaw });
         return .{ .x = pitch, .y = yaw, .z = 0.0 };
     }
 
@@ -273,9 +267,13 @@ const FollowState = struct {
             .Add,
             // it's easier to travel the Y axis, so we increase the influence of the X axis according to the aspect ratio,
             // Z axis is irrelevant
-            (boat_model.rotation.asVector() - boat_target.asVector()) * @Vector(3, f32){ ctx.curr.aspect, 1.0, 0.0 },
+            (boat_model.rotation.asVector() - boat_target.asVector()) * @Vector(3, f32){
+                ctx.curr.aspect,
+                1.0,
+                0.0,
+            },
         );
-        if (speed > 0.6) {
+        if (speed > 0.4) {
             s.dizziness += 1;
             s.dizziness_decrease = dizziness_decrease_time;
         }
