@@ -217,7 +217,7 @@ const Model = struct {
 };
 
 const boat_lives_max = 3;
-const boat_position: Vec3d = .{ .x = 0.3, .y = 0.0, .z = 1.0 };
+const boat_position: Vec3d = .{ .x = 0.5, .y = 0.0, .z = 1.0 };
 const boat_scale = 0.5;
 var boat_state: BoatState = .{ .pop_in = .{} };
 var boat_model: Model = undefined;
