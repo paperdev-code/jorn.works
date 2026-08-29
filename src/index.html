@@ -16,7 +16,15 @@
 	</header>
 
 	<main>
-		<p>My name is Jorn Veken, I am a software engineer from the Netherlands.</p>
+		<div id="terminal">
+			<div id="stdout">
+				<div>
+					<span id="prefix">[athena@mla:~]$ </span>
+					<span id="stdin"></span>
+					<span id="cursor">|</span>
+				</div>
+			</div>
+		</div>
 	</main>
 
 	<footer>
@@ -35,9 +43,90 @@
 			<span class="icon">&#xe820;</span>
 			<a href="https://linkedin.com/in/jornveken">LinkedIn</a>
 		</span>
+
+		<span>
+			<span class="icon">&#xf42f;</span>
+			<a href="mailto:contact@jorn.works">Email</a>
 	</footer>
 
 	<pre id="background"></pre>
+
+	<div id="terminal-actions" hidden>
+		<div id="help" data-stdin="ssh guest@jorn.works">
+			<p>Last login: Sat May 30 11:22:33 2026</p>
+			<ul>
+				<li><a class="cmd" href="#about">about</a></li>
+				<li><a class="cmd" href="#skills">skills</a></li>
+				<li><a class="cmd" href="#career">career</a></li>
+				<li><a class="cmd" href="#projects">projects</a></li>
+			</ul>
+		</div>
+
+		<div id="about" data-stdin="cat README.md">
+			<p>
+				I am a software engineer from the Netherlands, I've studied applied computer science
+				though I am predominantly self taught.
+				Professionally I help maintain large C++ codebases
+				and build, deploy and maintain internal applications using a variety of technologies.
+			</p>
+		</div>
+
+		<div id="skills" data-stdin="cat SKILLS.md">
+			<p><b># Languages</b></p>
+			<ul>
+				<li><span class="icon">&#xe646;</span> C/C++ (99, 17, 20, 23)</li>
+				<li><span class="icon">&#xe724;</span> Golang</li>
+				<li><span class="icon">&#xe843;</span> Nix</li>
+				<li><span class="icon">&#xe6a9;</span> Zig</li>
+				<li>... and quite a few more!</li>
+			</ul>
+			<p><b># Technologies</b></p>
+			<table>
+				<tr>
+					<td>P2P</td>
+					<td>Built and designed a peer-to-peer networking stack in C++ with ASIO and Protobuf.</td>
+				</tr>
+				<tr>
+					<td>RPC</td>
+					<td>Web applications with JSONRPC and HTMX</td>
+				</tr>
+				<tr>
+					<td>Reproducible builds</td>
+					<td>Nix(OS), Docker & OCI Containers - the stuff that saves your dev team headaches.</td>
+				</tr>
+				<tr>
+					<td>CI/CD</td>
+					<td>Predominantly worked with GitLab pipelines.</td>
+				</tr>
+				<tr>
+					<td>AI</td>
+					<td>LLM orchestration, local inference & also some vision...</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="career" data-stdin="wget linkedin.com/in/jornveken">
+			<ul>
+				<li><a href="https://hgg-group.com">HGG Profiling Equipment</a>, Software Engineer, 2023 (active)</li>
+				<li><a href="https://hollandmechanics.com">Holland Mechanics</a>, Intern, 2022 (6mo)</li>
+			</ul>
+		</div>
+
+		<div id="projects" data-stdin="ls projects -alG">
+			<table>
+				<tr>
+					<td>total 0</td>
+				</tr>
+				<tr>
+					<td>lr--r--r--</td>
+					<td>jorn</td>
+					<td>dendritic-nix</td>
+					<td>-></td>
+					<td><a href="https://github.com/paperdev-code/dendritic-nix">/mnt/github/dendritic-nix</a></td>
+				</tr>
+			</table>
+		</div>
+	</div>
 </body>
 
 </html>

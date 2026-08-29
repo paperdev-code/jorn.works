@@ -15,7 +15,9 @@
 :root {
   --text-color: light-dark(rgb(0 0 0), rgb(255 255 255));
   --back-color: light-dark(rgb(255 255 228), rgb(0 0 0));
-  --dots-mask-start: light-dark(rgb(40 114 104), rgb(34 206 243));
+  --nav-back-color: light-dark(rgb(0 0 0 / 9%), rgb(255 255 228 / 9%));
+  --nav-text-color: light-dark(rgb(40 76 114), rgb(122 203 22));
+  --dots-mask-start: light-dark(rgb(40 114 104), rgb(122 203 22));
   --dots-mask-end: light-dark(rgb(40 76 114), rgb(249 32 201));
   --dots-mask: linear-gradient(135deg, var(--dots-mask-start) 25%, var(--dots-mask-end) 75%);
   --dots-font: arial, sans-serif;
@@ -47,6 +49,10 @@ body {
 
 main {
   flex: 1;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
 }
 
 header,
@@ -93,17 +99,109 @@ pre {
 
 .icon {
   font-family: "Symbols Nerd Font Mono";
+  font-weight: 700;
 }
 
-a {
+#terminal {
+  flex: 1;
+  width: 50%;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#stdout {
+  width: auto;
+  min-height: 0;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  line-height: 1.5;
+  padding-left: 1rem;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--dots-mask-start) rgb(0 0 0 / 0);
+  /* bizarrely, this is the way to change the scrollbar position. */
+  direction: rtl;
+}
+
+#stdout * {
+  /* change the direction back for all the content. */
+  direction: initial;
+}
+
+#stdout p {
+  text-align: justify;
+}
+
+#stdout table,
+#stdout ul,
+#stdout p {
+  margin: 1em 0px;
+}
+
+#stdout li::marker {
+  content: "- ";
+}
+
+#stdout table {
+  border-spacing: 1rem 0;
+}
+
+#stdout td {
+  vertical-align: top;
+  text-align: left;
+}
+
+#stdout a {
+  text-decoration: none;
+}
+
+#stdout a.cmd {
+  font-weight: 700;
+  color: var(--dots-mask-start);
+  text-decoration: none;
+}
+
+#stdout a.cmd::after {
+  font-family: "Symbols Nerd Font Mono";
+  color: var(--dots-mask-start);
+  content: " \f120";
+  font-size: 0.5em;
+  vertical-align: super;
+}
+
+nav {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: space-evenly;
+}
+
+nav a {
+  flex: 1;
+  text-align: center;
+
+  color: var(--nav-text-color);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+footer a {
   color: var(--text-color);
   font-weight: 700;
   text-decoration: none;
 }
 
-a::after {
+footer a::after,
+#stdout a::after {
   font-family: "Symbols Nerd Font Mono";
   content: " \f44c";
-  font-size: calc(1em / 2);
+  font-size: 0.5em;
   vertical-align: super;
 }
