@@ -98,7 +98,7 @@ pre {
 }
 
 .icon {
-  font-family: "Symbols Nerd Font Mono";
+  font-family: "Symbols Nerd Font Mono", system-ui;
   font-weight: 700;
 }
 
@@ -167,7 +167,7 @@ pre {
 }
 
 #stdout a.cmd::after {
-  font-family: "Symbols Nerd Font Mono";
+  font-family: "Symbols Nerd Font Mono", system-ui;
   color: var(--dots-mask-start);
   content: " \f120";
   font-size: 0.5em;
@@ -200,7 +200,7 @@ footer a {
 
 footer a::after,
 #stdout a::after {
-  font-family: "Symbols Nerd Font Mono";
+  font-family: "Symbols Nerd Font Mono", system-ui;
   content: " \f44c";
   font-size: 0.5em;
   vertical-align: super;
