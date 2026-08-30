@@ -52,7 +52,6 @@ class Mutex {
   const prefix = document.getElementById('prefix');
 
   async function writeStdin(text) {
-    console.log(text);
     for (let idx = 0; idx < text.length; ++idx) {
       stdin.innerText += text[idx];
       await sleep(40);
