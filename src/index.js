@@ -29,10 +29,11 @@ class Mutex {
   }
 
   async lock() {
-    while (this.locked)
-      await new Promise(function (res) {
+    while (this.locked) {
+      await new Promise((res) => {
         this.priorityQueue.push(res);
       });
+    }
     this.locked = true;
   }
 
