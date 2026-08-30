@@ -1,11 +1,7 @@
 function readSlice(instance, slice) {
   const ptr = Number(slice & 0xffffffffn);
   const len = Number((slice >> 32n) & 0xffffffffn);
-  return new Uint8Array(
-    instance.exports.memory.buffer,
-    ptr,
-    len,
-  );
+  return new Uint8Array(instance.exports.memory.buffer, ptr, len);
 }
 
 function writeSlice(instance, bytes) {
@@ -19,22 +15,15 @@ function freeSlice(instance, slice) {
   instance.exports.free(slice);
 }
 
-async function load(path, config_zon) {
-  let wasm = await WebAssembly.instantiateStreaming(fetch(path), {
+async function load(path) {
+  const wasm = await WebAssembly.instantiateStreaming(fetch(path), {
     env: {
       console: function (level, ptr, len) {
-        const text = new TextDecoder().decode(new Uint8Array(
-          wasm.instance.exports.memory.buffer,
-          ptr,
-          len,
-        ));
-        [
-          console.error,
-          console.warn,
-          console.info,
-          console.debug,
-        ][level](text);
-      }
+        const text = new TextDecoder().decode(
+          new Uint8Array(wasm.instance.exports.memory.buffer, ptr, len),
+        );
+        [console.error, console.warn, console.info, console.debug][level](text);
+      },
     },
   });
   return wasm.instance;

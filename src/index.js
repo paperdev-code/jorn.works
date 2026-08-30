@@ -3,12 +3,12 @@ import initBackground from './gfx/background.js';
 let mouse_pos_x = 0;
 let mouse_pos_y = 0;
 
-window.addEventListener('mousemove', function(evt) {
+window.addEventListener('mousemove', function (evt) {
   mouse_pos_x = evt.clientX;
   mouse_pos_y = evt.clientY;
 });
 
-window.addEventListener('load', async function() {
+window.addEventListener('load', async function () {
   const elt = document.getElementById('background');
   const background = await initBackground(elt);
   let time_prev_millis = 0;
@@ -29,9 +29,10 @@ class Mutex {
   }
 
   async lock() {
-    while (this.locked) await new Promise((res) => {
-      this.priorityQueue.push(res);
-    });
+    while (this.locked)
+      await new Promise(function (res) {
+        this.priorityQueue.push(res);
+      });
     this.locked = true;
   }
 
@@ -42,9 +43,9 @@ class Mutex {
       res();
     }
   }
-};
+}
 
-(function() {
+(() => {
   const stdin = document.getElementById('stdin');
   const stdout = document.getElementById('stdout');
   const prefix = document.getElementById('prefix');
@@ -65,22 +66,26 @@ class Mutex {
     stdout.insertBefore(stdin_line, stdout.lastElementChild);
     stdout.insertBefore(copy, stdout.lastElementChild);
   }
-  
-  const actions = (function() {
+
+  const actions = (function () {
     const result = new Map();
-    document.querySelectorAll('#terminal-actions > div').forEach(function (elt) {
-      result.set(elt.id, {
-        stdinText: elt.dataset.stdin,
-        stdoutElt: elt,
+    document
+      .querySelectorAll('#terminal-actions > div')
+      .forEach(function (elt) {
+        result.set(elt.id, {
+          stdinText: elt.dataset.stdin,
+          stdoutElt: elt,
+        });
       });
-    });
     return result;
-  })()
+  })();
 
   const terminal_mutex = new Mutex();
 
   async function sleep(ms) {
-    await new Promise(res => setTimeout(res, ms));
+    await new Promise(function (res) {
+      setTimeout(res, ms);
+    });
   }
 
   async function performAction(action) {
@@ -98,14 +103,14 @@ class Mutex {
     action && performAction(action);
   }
 
-  window.addEventListener('hashchange', function(evt) {
+  window.addEventListener('hashchange', function (evt) {
     performActionFromUrlIfAvailable(evt.newURL);
   });
 
   window.addEventListener('load', async function () {
-    performActionFromUrlIfAvailable("a:#help");
+    performActionFromUrlIfAvailable('a:#help');
     await terminal_mutex.lock();
-    prefix.innerText = "[guest@jorn.works:~]$ ";
+    prefix.innerText = '[guest@jorn.works:~]$ ';
     terminal_mutex.unlock();
     performActionFromUrlIfAvailable(window.location.href);
   });
