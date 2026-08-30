@@ -24,7 +24,7 @@
     var(--dots-mask-start) 25%,
     var(--dots-mask-end) 75%
   );
-  --dots-font: arial, sans-serif;
+  --dots-font: "DejaVu Sans Mono", sans-serif;
   --dots-size: calc(100vh / 63);
 
   color-scheme: light dark;
