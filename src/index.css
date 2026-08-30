@@ -12,6 +12,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Cascadia Mono";
+  src: url("/fonts/cascadiamono-regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --text-color: light-dark(rgb(0 0 0), rgb(255 255 255));
   --back-color: light-dark(rgb(255 255 228), rgb(0 0 0));
@@ -19,12 +26,10 @@
   --nav-text-color: light-dark(rgb(40 76 114), rgb(122 203 22));
   --dots-mask-start: light-dark(rgb(40 114 104), rgb(122 203 22));
   --dots-mask-end: light-dark(rgb(40 76 114), rgb(249 32 201));
-  --dots-mask: linear-gradient(
-    135deg,
-    var(--dots-mask-start) 25%,
-    var(--dots-mask-end) 75%
-  );
-  --dots-font: "DejaVu Sans Mono", sans-serif;
+  --dots-mask: linear-gradient(135deg,
+      var(--dots-mask-start) 25%,
+      var(--dots-mask-end) 75%);
+  --dots-font: "Cascadia Mono", monospace;
   --dots-size: calc(100vh / 63);
 
   color-scheme: light dark;
@@ -76,6 +81,7 @@ footer {
 
 pre {
   font-size: 1em;
+  line-height: 0.85em;
 }
 
 #background {
