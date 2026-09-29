@@ -335,7 +335,7 @@ pub fn setup(gpa: Allocator, aspect: f32, boat_stl: wasm.Slice, face_stl: wasm.S
         .{ .x = 0.5, .y = 0.0, .z = 1.0 }
     else
         .{ .x = 0.0, .y = 0.6, .z = 1.0 };
-    boat_scale = if (aspect < 1.0) 1.0 else 0.33;
+    boat_scale = if (aspect < 1.0) 0.5 else 0.33;
     boat_model.position = boat_position;
     boat_model.scale = boat_scale;
     face_model.position = boat_position;
