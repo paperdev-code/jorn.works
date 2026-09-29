@@ -26,9 +26,11 @@
   --nav-text-color: light-dark(rgb(40 76 114), rgb(122 203 22));
   --dots-mask-start: light-dark(rgb(40 114 104), rgb(122 203 22));
   --dots-mask-end: light-dark(rgb(40 76 114), rgb(249 32 201));
-  --dots-mask: linear-gradient(135deg,
-      var(--dots-mask-start) 25%,
-      var(--dots-mask-end) 75%);
+  --dots-mask: linear-gradient(
+    135deg,
+    var(--dots-mask-start) 25%,
+    var(--dots-mask-end) 75%
+  );
   --dots-font: "Cascadia Mono", monospace;
   --dots-size: calc(100vh / 63);
 
@@ -52,8 +54,15 @@ body {
   margin: 0;
 
   font-family: "Share Tech Mono", Arial, system-ui;
+  font-size: 1em;
   color: var(--text-color);
   background-color: var(--back-color);
+}
+
+@media (orientation: portrait) {
+  body {
+    font-size: 0.75em;
+  }
 }
 
 main {
