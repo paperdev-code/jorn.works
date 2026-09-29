@@ -40,6 +40,7 @@ pub fn setup(config: Config) !void {
     scene_manager = .init(&scene_storage);
     try scene_manager.addScene(@import("background/boat.zig"), .{
         gpa,
+        curr.aspect,
         @as(wasm.Slice, @bitCast(config.boat_stl)),
         @as(wasm.Slice, @bitCast(config.face_stl)),
     });

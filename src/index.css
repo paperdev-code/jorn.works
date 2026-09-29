@@ -79,6 +79,22 @@ footer {
   margin-bottom: calc(var(--dots-size) * 8);
 }
 
+@media (orientation: portrait) {
+  header {
+    margin-top: var(--dots-size);
+  }
+
+  footer {
+    margin-bottom: var(--dots-size);
+  }
+
+  header,
+  main,
+  footer {
+    margin-left: 5vw;
+  }
+}
+
 pre {
   font-size: 1em;
   line-height: 0.85em;
@@ -119,6 +135,12 @@ pre {
 
   display: flex;
   flex-direction: column;
+}
+
+@media (orientation: portrait) {
+  #terminal {
+    width: 95%;
+  }
 }
 
 #stdout {

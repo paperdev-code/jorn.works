@@ -216,9 +216,8 @@ const Model = struct {
     }
 };
 
+var boat_scale: f32 = undefined;
 const boat_lives_max = 3;
-const boat_position: Vec3d = .{ .x = 0.5, .y = 0.0, .z = 1.0 };
-const boat_scale = 0.5;
 var boat_state: BoatState = .{ .pop_in = .{} };
 var boat_model: Model = undefined;
 var face_model: Model = undefined;
@@ -323,7 +322,7 @@ const BoatState = union(BoatStates) {
     }
 };
 
-pub fn setup(gpa: Allocator, boat_stl: wasm.Slice, face_stl: wasm.Slice) !void {
+pub fn setup(gpa: Allocator, aspect: f32, boat_stl: wasm.Slice, face_stl: wasm.Slice) !void {
     boat_model = Model.fromStl(gpa, boat_stl.asBuffer()) catch |err| {
         log.err("failed to load boat from STL: {t}", .{err});
         return err;
@@ -332,6 +331,11 @@ pub fn setup(gpa: Allocator, boat_stl: wasm.Slice, face_stl: wasm.Slice) !void {
         log.err("failed to load face from STL: {t}", .{err});
         return err;
     };
+    const boat_position: Vec3d = if (aspect < 1.0)
+        .{ .x = 0.5, .y = 0.0, .z = 1.0 }
+    else
+        .{ .x = 0.0, .y = 0.6, .z = 1.0 };
+    boat_scale = if (aspect < 1.0) 1.0 else 0.33;
     boat_model.position = boat_position;
     boat_model.scale = boat_scale;
     face_model.position = boat_position;
